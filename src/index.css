@@ -12,6 +12,7 @@
 @import url('./components/Main/Portfolio/Portfolio.css');
 @import url('./components/Footer/Footer.css');
 @import url('./components/SignForm/SignForm.css');
+@import url('./components/Profile/Profile.css');
 
 body {
   background-color: #202020;
