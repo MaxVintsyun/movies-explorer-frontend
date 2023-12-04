@@ -9,6 +9,10 @@
 .header__logo {
     width: 38px;
     height: 38px;
+    background-image: url('../../images/logo.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .header__authentication {
@@ -23,6 +27,9 @@
     font-style: normal;
     font-weight: 500;
     line-height: 16px;
+    text-decoration: none;
+    opacity: 1;
+    transition: opacity 0.2s linear;
 }
 
 .header__auth {
@@ -34,4 +41,11 @@
     font-style: normal;
     font-weight: 500;
     line-height: 16px;
+    text-decoration: none;
+    transition: opacity 0.2s linear;
+}
+
+.header__register:hover,
+.header__auth:hover {
+    opacity: 0.7;
 }

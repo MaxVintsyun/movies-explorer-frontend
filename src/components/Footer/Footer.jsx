@@ -1,5 +1,11 @@
+import { hiddenRoutes } from "../../utils/constants";
+import { useLocation} from 'react-router-dom';
+
 function Footer() {
+    const location = useLocation();
+
     return(
+        (!hiddenRoutes.includes(location.pathname) || location.pathname === '/profile') && (
         <footer className="footer">
             <p className="footer__info">Учебный проект Яндекс.Практикум х BeatFilm.</p>
             <div className="footer__subinfo">
@@ -10,6 +16,7 @@ function Footer() {
                 </div>
             </div>
         </footer>
+        )
     );
 }
 

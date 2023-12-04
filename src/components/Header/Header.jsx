@@ -1,15 +1,19 @@
-import React from 'react';
-import logo from '../../images/header-logo.svg';
+import { useLocation, Link } from 'react-router-dom';
+import { hiddenRoutes } from '../../utils/constants';
 
 function Header() {
+    const location = useLocation();
+
     return(
+        !hiddenRoutes.includes(location.pathname) && (
         <header className='header'>
-            <img className='header__logo' src={logo} alt='Лого'/>
+            <Link to='/' className='header__logo' />
             <div className='header__authentication'>
-                <div className='header__register'>Регистрация</div>
-                <div className='header__auth'>Войти</div>
+                <Link to='/signup' className='header__register'>Регистрация</Link>
+                <Link to='/signin' className='header__auth'>Войти</Link>
             </div>
         </header>
+        )
     );
 }
 

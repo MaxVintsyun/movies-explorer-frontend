@@ -1,3 +1,5 @@
+const hiddenRoutes = ['/signup', '/signin', '/not-found'];
+
 const techs = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB']
 
 const projects = [
@@ -6,4 +8,4 @@ const projects = [
     {title: 'Одностраничное приложение', link: 'https://maxvintsyun.github.io/mvin-mesto/'},
 ]
 
-export { techs, projects }
+export { hiddenRoutes, techs, projects }
