@@ -24,3 +24,20 @@
     line-height: normal;
     cursor: pointer;
 }
+
+@media screen and (max-width: 1200px) {
+    .movies__container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .movies__container {
+        margin-top: 40px;
+        row-gap: 50px;
+    }
+
+    .movies__more {
+        width: 100%;
+    }
+}

@@ -86,8 +86,6 @@
     transition: opacity 0.2s linear, visibility 0.2s linear;
 }
 
-
-
 .movie:hover > .movie__save {
     opacity: 1;
     visibility: visible;
@@ -116,4 +114,11 @@
 .movie:hover > .movie__delete {
     opacity: 1;
     visibility: visible;
+}
+
+@media screen and (max-width: 500px) {
+    .movie__title {
+        max-width: 240px;
+        font-size: 12px;
+    }
 }

@@ -13,7 +13,7 @@ import { films } from "../../utils/constants";
 
 
 function App() {
-  const [isAuth, setIsAuth] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
   const [isSortFilms, setIsSortFilms] = useState(false);
   const [isSortSavedFilms, setIsSortSavedFilms] = useState(false);
   const [filmsToShow, setFilmsToShow] = useState(12);

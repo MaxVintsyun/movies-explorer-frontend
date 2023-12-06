@@ -56,3 +56,25 @@
 .not-found__go-back:hover {
     opacity: 0.8;
 }
+
+@media screen and (max-width: 768px) {
+    .not-found__go-back {
+        bottom: 222px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .not-found__title {
+        margin: 0 0 10px;
+        font-size: 80px;
+    }
+
+    .not-found__text {
+        font-size: 12px;
+    }
+
+    .not-found__go-back {
+        font-size: 12px;
+        bottom: 30px;
+    }
+}

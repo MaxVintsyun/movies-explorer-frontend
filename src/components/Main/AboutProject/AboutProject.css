@@ -58,7 +58,6 @@
     background-color: #3DDC84;
     color: #000;
     text-align: center;
-    font-family: Inter;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -79,4 +78,61 @@
     font-style: normal;
     font-weight: 500;
     line-height: 17px;
+}
+
+@media screen and (max-width: 768px) {
+    .about-project {
+        padding: 90px 0;
+    }
+
+    .about-project__info {
+        column-gap: 30px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .about-project {
+        padding: 70px 0;
+    }
+
+    .about-project__title {
+        margin: 0 0 60px;
+        padding: 0 0 28px;
+        font-size: 18px;
+        letter-spacing: -0.72px;
+    }
+
+    .about-project__info {
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: 56px;
+    }
+
+    .about-project__paragraph {
+        row-gap: 16px;
+    }
+
+    .about-project__subtitle {
+        font-size: 18px;
+        letter-spacing: -0.72px;   
+    }
+
+    .about-project__text {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .about-project__parts {
+        grid-template-columns: 35% 65%;
+        margin-top: 60px;
+    }
+
+    .about-project__time-spent {
+        padding: 11px 0;
+        font-size: 11px;
+    }
+
+    .about-project__part-name {
+        padding: 10px 0 0;
+        font-size: 11px;
+    }
 }

@@ -25,3 +25,15 @@
 .navtab__element:hover {
     opacity: 0.8;
 }
+
+@media screen and (max-width: 425px) {
+    .navtab {
+        column-gap: 6px;
+        margin-bottom: 17px;
+    }
+
+    .navtab__element {
+        padding: 5px 15.5px;
+        font-size: 10px;
+    }
+}

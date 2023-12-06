@@ -75,3 +75,104 @@
     max-height: 100%;
     border-radius: 10px;
 }
+
+@media screen and (max-width: 900px) {
+    .about-me__main-info {
+        max-width: 364px;
+    }
+
+    .about-me__name {
+        margin: 0 0 16px;
+        font-size: 40px;
+        line-height: 1;
+        letter-spacing: -2px;
+    }
+
+    .about-me__additional {
+        margin: 0 0 20px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .about-me__description {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .about-me__image {
+        max-width: 255px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .about-me {
+        padding: 90px 0;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .about-me__student-info {
+        flex-direction: column-reverse;
+    }
+
+    .about-me__main-info {
+        max-width: 100%;
+    }
+
+    .about-me__name {
+        margin: 0 0 16px;
+        font-size: 40px;
+        line-height: 1;
+        letter-spacing: -2px;
+    }
+
+    .about-me__additional {
+        margin: 0 0 20px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .about-me__description {
+        margin: 0 0 40px;
+    }
+
+    .about-me__image {
+        max-width: 255px;
+        margin: 0 auto 40px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .about-me {
+        padding: 70px 0;
+    }
+
+    .about-me__title {
+        margin: 0 0 60px;
+        padding: 0 0 28px;
+        font-size: 18px;
+        letter-spacing: -0.72px;
+    }
+
+    .about-me__name {
+        margin: 0 0 20px;
+        font-size: 30px;
+        line-height: normal;
+        letter-spacing: -1.2px;
+    }
+
+    .about-me__additional {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .about-me__description {
+        margin: 0 0 40px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .about-me__image {
+        max-width: 292px;
+    }
+}
