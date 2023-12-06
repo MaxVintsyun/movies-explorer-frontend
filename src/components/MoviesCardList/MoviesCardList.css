@@ -1,0 +1,26 @@
+.movies__container {
+    width: 100%;
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 360px));
+    column-gap: 30px;
+    row-gap: 60px;
+}
+
+.movies__more {
+    box-shadow: none;
+    outline: none;
+    background: none;
+    border-radius: 6px;
+    border: 1px solid #424242;
+    margin: 50px auto 80px;
+    padding: 9px 0;
+    width: 320px;
+    color: #FFF;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+}
