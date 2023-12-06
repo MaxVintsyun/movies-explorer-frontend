@@ -3,7 +3,7 @@ const hiddenRoutes = ['/signup', '/signin', '/not-found'];
 const techs = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB']
 
 const projects = [
-    {title: 'Статичный сайт', link: '#'},
+    {title: 'Статичный сайт', link: 'https://maxvintsyun.github.io/how-to-learn/'},
     {title: 'Адаптивный сайт', link: 'https://maxvintsyun.github.io/mvin-russian-travel/index.html'},
     {title: 'Одностраничное приложение', link: 'https://maxvintsyun.github.io/mvin-mesto/'},
 ]
