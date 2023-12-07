@@ -1,0 +1,162 @@
+.sign {
+    display: flex;
+    flex-direction: column;
+    max-width: 396px;
+    margin: 70px auto 0;
+}
+
+.sign__logo {
+    width: 38px;
+    height: 38px;
+    background-image: url('../../images/logo.svg');
+    background-size: 100%;
+    background-position: center;
+}
+
+.sign__title {
+    margin: 40px 0;
+    padding: 0;
+    color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.sign__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 380px;
+    max-height: 100%;
+}
+
+.sign__field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.sign__field:last-of-type {
+    padding-bottom: 0;
+}
+
+.sign__placeholder {
+    margin-bottom: 10px;
+    color: #8B8B8B;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sign__input {
+    padding: 15px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: #FFF;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-radius: 8px;
+    background-color: #2F2F2F;
+}
+
+.sign__input_error {
+    color: #EE3465;
+}
+
+.sign__error {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    color: #EE3465;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sign__error_active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sign__submit {
+    margin-top: auto;
+    padding: 13px 0 15px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    text-align: center;
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-radius: 3px;
+    background: #4285F4;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.2s linear;
+}
+
+.sign__submit:hover {
+    opacity: 0.8;
+}
+
+.sign__question {
+    margin: 16px 0 0;
+    padding: 0;
+    color: #8B8B8B;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sign__redirect {
+    color: #4285F4;
+    text-decoration: none;
+    opacity: 1;
+    transition: opacity 0.2s linear;
+}
+
+.sign__redirect:hover {
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
+    .sign {
+        margin-top: 232px
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .sign {
+        margin-top: 56px;
+        max-width: 260px;
+        align-items: center;
+    }
+
+    .sign__title {
+        margin: 50px 0 80px;
+    }
+
+    .sign__submit {
+        margin-top: 180px;
+        padding: 15px 0;
+        font-size: 12px;
+    }
+
+    .sign__question {
+        margin: 14px 0 0;
+        font-size: 12px;
+    }
+}
