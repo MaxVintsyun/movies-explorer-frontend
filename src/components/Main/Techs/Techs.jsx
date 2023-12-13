@@ -8,8 +8,8 @@ const Techs = forwardRef((props, ref) => {
             <h3 className="techs__count">7 технологий</h3>
             <p className="techs__description">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
             <div className="techs__technologies">
-                {techs.map((tech, index) => (
-                    <p key={index} className="techs__tech">{tech}</p>
+                {techs.map((tech) => (
+                    <p key={tech.id} className="techs__tech">{tech.value}</p>
                 ))}
             </div>
         </section>
