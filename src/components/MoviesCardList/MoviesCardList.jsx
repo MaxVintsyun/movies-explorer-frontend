@@ -3,7 +3,7 @@ import useResize from "../../utils/useResize";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
 
-function MoviesCardList({ isLoading, defaultFilms, films, searchText, onSave, onDelete }) {
+function MoviesCardList({ isLoading, films, searchText, onSave, onDelete }) {
     const [moreFilms, setMoreFilms] = useState(0);
     const [showedFilms, setShowedFilms] = useState(0);
     const windowWidth = useResize();
@@ -45,7 +45,6 @@ function MoviesCardList({ isLoading, defaultFilms, films, searchText, onSave, on
                                         image={film.image.url ? `https://api.nomoreparties.co/${film.image.url}` : film.image}
                                         title={film.nameRU}
                                         duration={film.duration}
-                                        owner={film.owner}
                                         onSave={onSave}
                                         onDelete={onDelete}
                                     />)}

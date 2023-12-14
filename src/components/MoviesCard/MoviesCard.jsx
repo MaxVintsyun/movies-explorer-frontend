@@ -9,12 +9,11 @@ function MoviesCard({
     image,
     title,
     duration,
-    owner,
     onSave,
     onDelete
 }) {
     const currentUser = useContext(CurrentUserContext);
-    const [isSaved, setIsSaved] = useState(owner === currentUser._id || false);
+    const [isSaved, setIsSaved] = useState(film.owner === currentUser._id || false);
     const location = useLocation();
     const [button, setButton] = useState(false);
 
@@ -31,7 +30,7 @@ function MoviesCard({
 
     const handleDelete = () => {
         onDelete(movieId);
-        setIsSaved(false)
+        setIsSaved(false);
     }
 
     useEffect(() => {

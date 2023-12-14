@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import ProtectedRoute from '../Main/ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
@@ -15,7 +15,6 @@ import { moviesApi } from '../../utils/MoviesApi';
 import { mainApi } from '../../utils/MainApi';
 import searchedMovies from '../../utils/searchedFilms';
 import filterFilms from '../../utils/filterMovies';
-
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,15 +39,17 @@ function App() {
   const [displayedSavedFilms, setDisplayedSavedFilms] = useState(savedFilms)
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
+    const lastLocation = localStorage.getItem('location');
     if (jwt) {
       mainApi.checkToken(jwt)
         .then((res) => {
           setCurrentUser(res);
           setIsLoggedIn(true);
-          navigate('/movies', { replace: true });
+          navigate(lastLocation || '/movies', { replace: true });
         })
         .catch((error) => {
           console.error('Ошибка: ', error);
@@ -131,17 +132,18 @@ function App() {
     });
 
     setSortedSavedFilms(sortedFilms);
-  }, [displayedSavedFilms, savedFilms]);
+  }, [displayedSavedFilms]);
 
   useEffect(() => {
     searchParamSaved ? setDisplayedSavedFilms(searchedSavedFilms) : setDisplayedSavedFilms(savedFilms);
   }, [searchParamSaved, searchedSavedFilms, savedFilms])
 
   useEffect(() => {
+    localStorage.setItem('location', location.pathname);
     localStorage.setItem('searchedFilms', JSON.stringify(searchedFilms));
     localStorage.setItem('isSortFilms', JSON.stringify(isSortFilms));
     localStorage.setItem('searchParam', searchParam);
-  }, [searchedFilms, isSortFilms, searchParam]);
+  }, [searchedFilms, isSortFilms, searchParam, location]);
 
   const handleRegister = (email, password, name) => {
     mainApi.registerUser(email, password, name)
@@ -191,6 +193,7 @@ function App() {
     mainApi.postMovie(movie)
       .then((newMovie) => {
         setSavedFilms([newMovie, ...savedFilms]);
+        setFilms(films => films.map((film) => film.id === newMovie.movieId ? { ...film, owner: currentUser._id } : film));
       })
       .catch((err) => {
         console.error('Ошибка: ', err);
@@ -201,6 +204,7 @@ function App() {
     mainApi.deleteMovie(movieId)
       .then(() => {
         setSavedFilms(savedFilms => savedFilms.filter((movie) => movie.movieId !== movieId));
+        setFilms(films => films.map((film) => film.id === movieId ? { ...film, owner: '' } : film));
       })
       .catch((err) => {
         console.error('Ошибка: ', err);
