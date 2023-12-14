@@ -124,7 +124,7 @@ function App() {
     });
 
     setSortedFilms(sortedFilms);
-  }, [searchedFilms]);
+  }, [searchedFilms, films]);
 
   useEffect(() => {
     const sortedFilms = displayedSavedFilms.filter((film) => {

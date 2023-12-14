@@ -26,11 +26,13 @@ function MoviesCard({
     const handleSave = () => {
         onSave(film);
         setIsSaved(true);
+        film.owner = currentUser._id;
     }
 
     const handleDelete = () => {
         onDelete(movieId);
         setIsSaved(false);
+        film.owner = '';
     }
 
     useEffect(() => {
