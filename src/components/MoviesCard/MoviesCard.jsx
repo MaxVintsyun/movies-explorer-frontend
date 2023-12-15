@@ -26,13 +26,17 @@ function MoviesCard({
     const handleSave = () => {
         onSave(film);
         setIsSaved(true);
-        film.owner = currentUser._id;
+        film.owner = currentUser._id.toString();
     }
 
     const handleDelete = () => {
         onDelete(movieId);
         setIsSaved(false);
         film.owner = '';
+    }
+
+    const handleDeleteSaved = () => {
+        onDelete(movieId);
     }
 
     useEffect(() => {
@@ -55,7 +59,7 @@ function MoviesCard({
                     <button className="movie__save" onClick={handleSave}>Сохранить</button>
                 )
             ) : (
-                <button className="movie__delete" onClick={handleDelete} />
+                <button className="movie__delete" onClick={handleDeleteSaved} />
             )
             }
         </div>

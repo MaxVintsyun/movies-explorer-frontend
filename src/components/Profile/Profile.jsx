@@ -3,7 +3,7 @@ import FormInput from "../FormInput/FormInput";
 import { isValidEmail, isValidName } from "../../utils/validationConfig";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile({ onUpdate, onSignOut }) {
+function Profile({ isSuccess, submitResultText, onUpdate, onSignOut }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('')
     const [isDisabled, setIsDisabled] = useState(true);
@@ -67,6 +67,7 @@ function Profile({ onUpdate, onSignOut }) {
                     handleValue={handleEmail}
                     checkValue={isValidEmail}
                 />
+                <span className={`profile__submit-text ${isSuccess ? 'profile__submit-text_success' : 'profile__submit-text_failed'}`}>{submitResultText}</span>
                 <button type='submit' disabled={isDisabled} className={`profile__button profile__edit ${isDisabled ? 'profile__edit_disabled' : ''}`}>Редактировать</button>
             </form>
             <button className="profile__button profile__sign-out" onClick={handleSignOut}>Выйти из аккаунта</button>

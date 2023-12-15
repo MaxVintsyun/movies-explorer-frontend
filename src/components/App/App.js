@@ -20,6 +20,9 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
+  const [profileSubmitText, setProfileSubmitText] = useState('');
+  const [isProfileChangeSuccessed, setIsProfileChangeSuccessed] = useState(false);
+
   const [isNavOpened, setIsNavOpened] = useState(false);
 
   const [films, setFilms] = useState([]);
@@ -148,7 +151,8 @@ function App() {
   const handleRegister = (email, password, name) => {
     mainApi.registerUser(email, password, name)
       .then(() => {
-        navigate('/signin', { replace: true });
+        handleLogin(email, password);
+        navigate('/movies', { replace: true });
       })
       .catch((err) => {
         console.error('Ошибка: ', err);
@@ -182,29 +186,42 @@ function App() {
   function handleUpdateUserInfo(email, name) {
     mainApi.updateUserInfo(email, name)
       .then((userData) => {
+        setIsProfileChangeSuccessed(true);
+        setProfileSubmitText('Данные успешно изменены');
         setCurrentUser(userData);
       })
       .catch((err) => {
+        setIsProfileChangeSuccessed(false);
+        setProfileSubmitText('Что-то пошло не так...');
         console.error('Ошибка: ', err);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setProfileSubmitText('');
+          setIsProfileChangeSuccessed(false);
+        }, 2000);
       });
   }
 
   function hanlePostMovie(movie) {
-    mainApi.postMovie(movie)
-      .then((newMovie) => {
-        setSavedFilms([newMovie, ...savedFilms]);
-        setFilms(films => films.map((film) => film.id === newMovie.movieId ? { ...film, owner: currentUser._id } : film));
-      })
-      .catch((err) => {
-        console.error('Ошибка: ', err);
-      });
+    if (!savedFilms.some((film) => film.movieId === movie.id)) {
+      mainApi.postMovie(movie)
+        .then((newMovie) => {
+
+          setSavedFilms([newMovie, ...savedFilms]);
+          setFilms(films => films.map((film) => film.id === newMovie.movieId ? { ...film, owner: currentUser._id.toString() } : film));
+        })
+        .catch((err) => {
+          console.error('Ошибка: ', err);
+        });
+    }
   }
 
   function handleDeleteMovie(movieId) {
     mainApi.deleteMovie(movieId)
       .then(() => {
         setSavedFilms(savedFilms => savedFilms.filter((movie) => movie.movieId !== movieId));
-        setFilms(films => films.map((film) => film.id === movieId ? { ...film, owner: '' } : film));
+        setFilms(films => films.map((film) => film.id === movieId ? { ...film, owner: "" } : film));
       })
       .catch((err) => {
         console.error('Ошибка: ', err);
@@ -276,13 +293,15 @@ function App() {
             element={
               <ProtectedRoute
                 element={Profile}
+                isSuccess={isProfileChangeSuccessed}
+                submitResultText={profileSubmitText}
                 onUpdate={handleUpdateUserInfo}
                 onSignOut={handleSignOut}
                 isLoggedIn={isLoggedIn}
               />}
           />
-          <Route path='/signin' element={<Login onLogin={handleLogin} />} />
-          <Route path='/signup' element={<Register onRegister={handleRegister} />} />
+          <Route path='/signin' element={!isLoggedIn ? <Login onLogin={handleLogin} /> : <Navigate to='/movies' replace={true} />} />
+          <Route path='/signup' element={!isLoggedIn ? <Register onRegister={handleRegister} /> : <Navigate to='/movies' replace={true} />} />
           <Route path='/not-found' element={<PageNotFound />} />
           <Route path="*" element={<Navigate to='/not-found' replace={true} />} />
         </Routes>

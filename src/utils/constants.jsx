@@ -17,6 +17,6 @@ const projects = [
 
 const moviesApiUrl = 'https://api.nomoreparties.co/beatfilm-movies';
 
-const mainApiUrl = 'https://api.mvinmoviesexplorer.nomoredomainsmonster.ru'
+const mainApiUrl = 'https://api.mvinmoviesexplorer.nomoredomainsmonster.ru';
 
 export { hiddenRoutes, techs, projects, moviesApiUrl, mainApiUrl }
