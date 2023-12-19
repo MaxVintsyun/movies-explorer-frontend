@@ -2,14 +2,14 @@ import { useLocation, Link, NavLink } from 'react-router-dom';
 import { hiddenRoutes } from '../../utils/constants';
 import Navigation from '../Navigation/Navigation';
 
-function Header({ isAuth, isOpenNav, openNav, closeNav }) {
+function Header({ isLoggedIn, isOpenNav, openNav, closeNav }) {
     const location = useLocation();
 
     return (
         !hiddenRoutes.includes(location.pathname) && (
             <header className='header'>
                 <Link to='/' className='header__logo' />
-                {isAuth ? (
+                {isLoggedIn ? (
                     <>
                         <div className='header__menu'>
                             <NavLink to="/movies" className={({ isActive }) => `header__link ${isActive ? "header__link_active" : ""}`}>Фильмы</NavLink>

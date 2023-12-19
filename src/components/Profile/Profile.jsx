@@ -1,15 +1,76 @@
-function Profile() {
-    return(
+import { useState, useEffect, useContext } from "react";
+import FormInput from "../FormInput/FormInput";
+import { isValidEmail, isValidName } from "../../utils/validationConfig";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
+function Profile({ isSuccess, submitResultText, onUpdate, onSignOut }) {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('')
+    const [isDisabled, setIsDisabled] = useState(true);
+    const currentUser = useContext(CurrentUserContext);
+
+    useEffect(() => {
+        setName(currentUser.name);
+        setEmail(currentUser.email);
+    }, [currentUser]);
+
+    const handleName = (value) => {
+        setName(value);
+    }
+
+    const handleEmail = (value) => {
+        setEmail(value);
+    }
+
+    useEffect(() => {
+        (
+            name && email &&
+            (
+                name !== currentUser.name ||
+                email !== currentUser.email
+            )
+        ) ? setIsDisabled(false) : setIsDisabled(true);
+    }, [name, email, currentUser]);
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        onUpdate(email, name);
+    };
+
+    const handleSignOut = () => {
+        onSignOut();
+    }
+
+    return (
         <section className="profile">
-            <h2 className="profile__title">Привет, Максим!</h2>
-            <div className="profile__info">
-                <p className="profile__field">Имя<span className="profile__value">Максим</span></p>
-                <p className="profile__field">E-mail<span className="profile__value">pochta@yandex.ru</span></p>
-            </div>
-            <div className="profile__controls">
-                <button className="profile__button profile__edit">Редактировать</button>
-                <button className="profile__button profile__sign-out">Выйти из аккаунта</button>
-            </div>
+            <h2 className="profile__title">Привет, {currentUser.name}!</h2>
+            <form className="profile__info" onSubmit={handleSubmit}>
+                <FormInput
+                    className='profile'
+                    defaultValue={name}
+                    htmlFor='name'
+                    id='profile-name-input'
+                    name='name'
+                    type='text'
+                    placeholder='Имя'
+                    handleValue={handleName}
+                    checkValue={isValidName}
+                />
+                <FormInput
+                    className='profile'
+                    defaultValue={email}
+                    htmlFor='email'
+                    id='profile-email-input'
+                    name='email'
+                    type='email'
+                    placeholder='Email'
+                    handleValue={handleEmail}
+                    checkValue={isValidEmail}
+                />
+                <span className={`profile__submit-text ${isSuccess ? 'profile__submit-text_success' : 'profile__submit-text_failed'}`}>{submitResultText}</span>
+                <button type='submit' disabled={isDisabled} className={`profile__button profile__edit ${isDisabled ? 'profile__edit_disabled' : ''}`}>Редактировать</button>
+            </form>
+            <button className="profile__button profile__sign-out" onClick={handleSignOut}>Выйти из аккаунта</button>
         </section>
     )
 }

@@ -1,11 +1,20 @@
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function SavedMovies({ films, isSort, onSort }) {
-    return(
+function SavedMovies({ isLoading, films, searchReq, searchText, isSort, onSearch, onSort, onDelete }) {
+    return (
         <section className="movies">
-            <SearchForm isSort={isSort} onSort={onSort}/>
-            <MoviesCardList films={films} isSort={isSort} />
+            <SearchForm
+                isSort={isSort}
+                searchReq={searchReq}
+                onSort={onSort}
+                onSearch={onSearch}
+            />
+            <MoviesCardList
+                isLoading={isLoading}
+                films={films}
+                searchText={searchText}
+                onDelete={onDelete} />
         </section>
     );
 }
